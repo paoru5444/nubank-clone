@@ -5,9 +5,22 @@ import { Container, TabsContainer, TabItem, TabText } from './styles';
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
-export default function Tabs() {
+export default function Tabs({ translateY }) {
   return (
-    <Container>
+    <Container style={{
+      opacity: translateY.interpolate({
+        inputRange: [0, 380],
+        outputRange: [1, 0],
+        extrapolate: 'clamp'
+      }),
+      transform: [{
+        translateY: translateY.interpolate({
+          inputRange: [0, 380],
+          outputRange: [0, 30],
+          extrapolate: 'clamp'
+        })
+      }]
+    }}>
       <TabsContainer>
         <TabItem>
           <MaterialIcons name="person-add" size={20} color="#FFF" />
